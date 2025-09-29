@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+}
+
+h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column; /* Stack vertically */
+  gap: 20px;
+  align-items: center; /* Center horizontally */
+}
+
+
+.chat {
+  background-color: aliceblue;
+  padding: 20px;
+  border-radius: 16px;
+  display: inline-block;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.chat:hover {
+  transform: translateY(-5px);
+}
+
+.msg {
+  background-color: dodgerblue;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-style: italic;
+}
+
+.chat p {
+  margin: 8px 0;
+  color: #444;
+}
+
+.chat small {
+  display: block;
+  margin-top: 10px;
+  color: #888;
+  font-size: 0.85em;
+}
+
