@@ -1,114 +1,114 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-// Connect to MongoDB
-main()
-  .then(() => console.log("Connection successful"))
-  .catch(err => console.log("Connection error:", err));
+// // Connect to MongoDB
+// main()
+//   .then(() => console.log("Connection successful"))
+//   .catch(err => console.log("Connection error:", err));
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/test');
-}
+// async function main() {
+//   await mongoose.connect('mongodb://127.0.0.1:27017/test');
+// }
 
-// Define schema
-const usernameSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  age: Number
-});
+// // Define schema
+// const usernameSchema = new mongoose.Schema({
+//   name: String,
+//   email: String,
+//   age: Number
+// });
 
-// Create model
-const User = mongoose.model("User", usernameSchema);
+// // Create model
+// const User = mongoose.model("User", usernameSchema);
 
-// ----------------------
-// CREATE
-// ----------------------
+// // ----------------------
+// // CREATE
+// // ----------------------
 
-// Insert multiple users
-User.insertMany([
-  { name: "Tony", email: "tony@gmail.com", age: 50 },
-  { name: "Peter", email: "peter@gmail.com", age: 30 },
-  { name: "Bruce", email: "bruce@gmail.com", age: 47 }
-])
-.then(res => console.log("Inserted:", res))
-.catch(err => console.log("Insert error:", err));
+// // Insert multiple users
+// User.insertMany([
+//   { name: "Tony", email: "tony@gmail.com", age: 50 },
+//   { name: "Peter", email: "peter@gmail.com", age: 30 },
+//   { name: "Bruce", email: "bruce@gmail.com", age: 47 }
+// ])
+// .then(res => console.log("Inserted:", res))
+// .catch(err => console.log("Insert error:", err));
 
-// Create and save one user
-const user2 = new User({
-  name: "eve",
-  email: "eve@gmail.com",
-  age: 23
-});
+// // Create and save one user
+// const user2 = new User({
+//   name: "eve",
+//   email: "eve@gmail.com",
+//   age: 23
+// });
 
-user2.save()
-  .then(res => console.log("Saved:", res))
-  .catch(err => console.log("Save error:", err));
+// user2.save()
+//   .then(res => console.log("Saved:", res))
+//   .catch(err => console.log("Save error:", err));
 
-// ----------------------
-// READ
-// ----------------------
+// // ----------------------
+// // READ
+// // ----------------------
 
-// Find all users
-User.find({})
-  .then(res => console.log("All users:", res))
-  .catch(err => console.log("Find error:", err));
+// // Find all users
+// User.find({})
+//   .then(res => console.log("All users:", res))
+//   .catch(err => console.log("Find error:", err));
 
-// Find users with age > 45
-User.find({ age: { $gt: 45 } })
-  .then(res => console.log("Age > 45:", res))
-  .catch(err => console.log("Find error:", err));
+// // Find users with age > 45
+// User.find({ age: { $gt: 45 } })
+//   .then(res => console.log("Age > 45:", res))
+//   .catch(err => console.log("Find error:", err));
 
-// Find user by ID
-User.findById("68d8c2b400a209a2ebb7f708")
-  .then(res => console.log("Found by ID:", res))
-  .catch(err => console.log("Find error:", err));
+// // Find user by ID
+// User.findById("68d8c2b400a209a2ebb7f708")
+//   .then(res => console.log("Found by ID:", res))
+//   .catch(err => console.log("Find error:", err));
 
-// ----------------------
-// UPDATE
-// ----------------------
+// // ----------------------
+// // UPDATE
+// // ----------------------
 
-// Update one user by name
-User.updateOne({ name: "Bruce" }, { age: 49 })
-  .then(res => console.log("Updated one:", res))
-  .catch(err => console.log("Update error:", err));
+// // Update one user by name
+// User.updateOne({ name: "Bruce" }, { age: 49 })
+//   .then(res => console.log("Updated one:", res))
+//   .catch(err => console.log("Update error:", err));
 
-// Update many users with age > 48
-User.updateMany({ age: { $gt: 48 } }, { age: 55 })
-  .then(res => console.log("Updated many:", res))
-  .catch(err => console.log("Update error:", err));
+// // Update many users with age > 48
+// User.updateMany({ age: { $gt: 48 } }, { age: 55 })
+//   .then(res => console.log("Updated many:", res))
+//   .catch(err => console.log("Update error:", err));
 
-// Find one and update, return updated doc
-User.findOneAndUpdate({ name: "Bruce" }, { age: 25 }, { new: true })
-  .then(res => console.log("FindOneAndUpdate:", res))
-  .catch(err => console.log("Update error:", err));
+// // Find one and update, return updated doc
+// User.findOneAndUpdate({ name: "Bruce" }, { age: 25 }, { new: true })
+//   .then(res => console.log("FindOneAndUpdate:", res))
+//   .catch(err => console.log("Update error:", err));
 
-// Update by ID and return updated doc
-User.findByIdAndUpdate("68d8c2b400a209a2ebb7f708", { age: 35 }, { new: true })
-  .then(res => console.log("Updated by ID:", res))
-  .catch(err => console.log("Update error:", err));
+// // Update by ID and return updated doc
+// User.findByIdAndUpdate("68d8c2b400a209a2ebb7f708", { age: 35 }, { new: true })
+//   .then(res => console.log("Updated by ID:", res))
+//   .catch(err => console.log("Update error:", err));
 
-// ----------------------
-// DELETE
-// ----------------------
+// // ----------------------
+// // DELETE
+// // ----------------------
 
-// Delete one user by name
-User.deleteOne({ name: "Bruce" })
-  .then(res => console.log("Deleted one:", res))
-  .catch(err => console.log("Delete error:", err));
+// // Delete one user by name
+// User.deleteOne({ name: "Bruce" })
+//   .then(res => console.log("Deleted one:", res))
+//   .catch(err => console.log("Delete error:", err));
 
-// Delete many users with age > 45
-User.deleteMany({ age: { $gt: 45 } })
-  .then(res => console.log("Deleted many:", res))
-  .catch(err => console.log("Delete error:", err));
+// // Delete many users with age > 45
+// User.deleteMany({ age: { $gt: 45 } })
+//   .then(res => console.log("Deleted many:", res))
+//   .catch(err => console.log("Delete error:", err));
 
-// Find one and delete
-User.findOneAndDelete({ name: "eve" })
-  .then(res => console.log("FindOneAndDelete:", res))
-  .catch(err => console.log("Delete error:", err));
+// // Find one and delete
+// User.findOneAndDelete({ name: "eve" })
+//   .then(res => console.log("FindOneAndDelete:", res))
+//   .catch(err => console.log("Delete error:", err));
 
-// Delete by ID
-User.findByIdAndDelete("68d8c2b400a209a2ebb7f708")
-  .then(res => console.log("Deleted by ID:", res))
-  .catch(err => console.log("Delete error:", err));
+// // Delete by ID
+// User.findByIdAndDelete("68d8c2b400a209a2ebb7f708")
+//   .then(res => console.log("Deleted by ID:", res))
+//   .catch(err => console.log("Delete error:", err));
 
   
 //    Here's a concise explanation for each CRUD operation in your Mongoose code:
